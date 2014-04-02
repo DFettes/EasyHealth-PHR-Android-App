@@ -2,6 +2,7 @@ package com.example.phr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -12,7 +13,10 @@ public class profile_page extends Activity{
 	String userID;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		userID = getIntent().getExtras().getString("userID");
+		
+		SharedPreferences settings = getSharedPreferences("userData", 0);
+		userID = settings.getString("userID", "string");
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
         	StrictMode.ThreadPolicy policy = 
         	        new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -23,6 +27,10 @@ public class profile_page extends Activity{
         setContentView(R.layout.profile_page);
         
         TextView viewCaretakers= (TextView) findViewById(R.id.view_caretakers);
+        TextView updatePersonInfo= (TextView) findViewById(R.id.personal_info);
+        TextView updateAccountInfo= (TextView) findViewById(R.id.account_info);
+        TextView updateContactInfo= (TextView) findViewById(R.id.contact_info);
+        
         TextView viewAllergy = (TextView) findViewById(R.id.get_allergy);
         TextView viewImmunization= (TextView) findViewById(R.id.get_immunization);
         TextView viewBloodPressure= (TextView) findViewById(R.id.get_blood_pressure);
@@ -45,7 +53,33 @@ public class profile_page extends Activity{
           	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), caretakers.class);
-                i.putExtra("userID", userID);
+                startActivity(i); 
+
+            }
+	});
+        
+        updatePersonInfo.setOnClickListener(new View.OnClickListener() {
+         	 
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), update_person_info.class);
+                startActivity(i); 
+
+            }
+	});
+        
+        updateAccountInfo.setOnClickListener(new View.OnClickListener() {
+        	 
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), update_account_info.class);
+                startActivity(i); 
+
+            }
+	});
+        
+        updateContactInfo.setOnClickListener(new View.OnClickListener() {
+        	 
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), update_contact_info.class);
                 startActivity(i); 
 
             }
@@ -54,7 +88,6 @@ public class profile_page extends Activity{
          	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_allergy.class);
-                i.putExtra("userID", userID);
                 startActivity(i); 
 
             }
@@ -63,7 +96,6 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_immunization.class);
-                i.putExtra("userID", userID);
                 startActivity(i); 
 
             }
@@ -72,7 +104,7 @@ public class profile_page extends Activity{
        	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_blood_pressure.class);
-                i.putExtra("userID", userID);
+ 
                 startActivity(i); 
 
             }
@@ -81,7 +113,7 @@ public class profile_page extends Activity{
           	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_blood_sugar.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -90,7 +122,7 @@ public class profile_page extends Activity{
          	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_emergency_contact.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -99,7 +131,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_height_weight.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -108,7 +140,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_medication.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -117,7 +149,7 @@ public class profile_page extends Activity{
        	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), view_temperature.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -133,7 +165,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_allergy.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -142,7 +174,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_immunization.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -151,7 +183,7 @@ public class profile_page extends Activity{
        	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_blood_pressure.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -160,7 +192,7 @@ public class profile_page extends Activity{
           	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_blood_sugar.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -169,7 +201,7 @@ public class profile_page extends Activity{
          	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_emergency_contact.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -178,7 +210,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_height_weight.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -187,7 +219,7 @@ public class profile_page extends Activity{
         	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_medication.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
@@ -196,7 +228,7 @@ public class profile_page extends Activity{
        	 
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), add_temperature.class);
-                i.putExtra("userID", userID);
+                
                 startActivity(i); 
 
             }
